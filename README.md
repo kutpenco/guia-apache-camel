@@ -7,7 +7,7 @@
 [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.x-brightgreen?logo=springboot)](https://spring.io/projects/spring-boot)
 [![Docker Compose](https://img.shields.io/badge/Docker%20Compose-ready-2496ED?logo=docker)](https://docs.docker.com/compose/)
 
-Este repositório combina um **guia completo de Apache Camel** com uma aplicação Java funcional. O objetivo é apresentar integração
+Este repositório combina um [**guia completo de Apache Camel**](./guia-apache-camel.md) com uma aplicação Java funcional. O objetivo é apresentar integração
 enterprise de forma prática: uma rota Camel recebe pedidos por REST, valida os
 dados, persiste o resultado e expõe métricas para operação.
 
@@ -51,6 +51,9 @@ principal deste projeto e cobre:
   dashboards;
 - segurança, mascaramento de credenciais, hardening e verificação de CVEs;
 - um apêndice com a estrutura de um projeto Camel completo.
+
+Para consultar definições dos termos técnicos usados no guia e no código,
+acesse o [Glossário Apache Camel e do projeto](./glossario.md).
 
 > O guia documenta a linha Camel 4.22 LTS. O exemplo executável usa Camel
 > 4.10.2, versão disponível no Maven Central no momento da criação, mantendo
