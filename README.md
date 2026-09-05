@@ -2,7 +2,7 @@
 
 ![Apache Camel](https://raw.githubusercontent.com/apache/camel/main/docs/img/logo-large.png)
 
-[![Java 17+](https://img.shields.io/badge/Java-17%2B-orange?logo=openjdk)](https://adoptium.net/)
+[![Java 25](https://img.shields.io/badge/Java-25-orange?logo=openjdk)](https://adoptium.net/)
 [![Apache Camel](https://img.shields.io/badge/Apache%20Camel-4.x-blue?logo=apache)](https://camel.apache.org/)
 [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.x-brightgreen?logo=springboot)](https://spring.io/projects/spring-boot)
 [![Docker Compose](https://img.shields.io/badge/Docker%20Compose-ready-2496ED?logo=docker)](https://docs.docker.com/compose/)
@@ -41,7 +41,7 @@ principal deste projeto e cobre:
 
 - fundamentos: `CamelContext`, rotas, `Exchange`, `Message`, headers e
   endpoints;
-- configuração com Java 17+, Maven, Camel CLI/JBang e DSL YAML;
+- configuração com Java 25, Maven, Camel CLI/JBang e DSL YAML;
 - integrações com arquivos, Kafka, REST/HTTP, JDBC, OpenAI, S3 e FTP/SFTP;
 - EIPs e estratégias de roteamento, transformação, enriquecimento e retries;
 - externalização de configuração, idempotência, throttling e tratamento de
@@ -62,7 +62,7 @@ acesse o [Glossário Apache Camel e do projeto](./glossario.md).
 ## Aplicação de exemplo: Camel Orders
 
 A aplicação está em [`src/`](./src/) e foi construída com Spring Boot, Apache
-Camel e Java 17. Ela mantém os pedidos em memória para ser executada sem
+Camel e Java 25. Ela mantém os pedidos em memória para ser executada sem
 dependências externas, enquanto o Docker Compose disponibiliza PostgreSQL,
 Kafka e um coletor OpenTelemetry para evoluções da integração.
 
@@ -122,7 +122,7 @@ curl -i -X POST http://localhost:8080/api/orders \
 
 ### Pré-requisitos
 
-- JDK 17 ou superior;
+- JDK 25;
 - Maven 3.9 ou superior;
 - Docker e Docker Compose (opcionais para a stack de infraestrutura).
 

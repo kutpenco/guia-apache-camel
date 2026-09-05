@@ -6,6 +6,9 @@ Camel Orders e na infraestrutura Docker.
 
 ## Apache Camel
 
+**Java 25** — Versão LTS do JDK usada pelo projeto para compilação, testes e
+execução local e nos containers Docker.
+
 **Apache Camel** — Framework open source para integração de sistemas. Conecta
 APIs, bancos de dados, arquivos, filas e serviços cloud por meio de rotas,
 componentes e padrões de integração.
@@ -283,4 +286,3 @@ contexto, rotas e serviços reais ou simulados.
 
 **Mock** — Substituto controlado de um componente real usado para verificar
 mensagens, chamadas e resultados durante testes.
-

@@ -118,7 +118,7 @@ from("ai-tool:weather?tags=weather&description=Obter clima&parameter.cidade=stri
 
 ### Pré-requisitos
 
-- **Java**: JDK 17 ou superior (JDK 25 suportado na 4.20+) [cite:18]
+- **Java**: JDK 25 (LTS)
 - **Maven**: 3.9+ ou Gradle 8+
 - **Opcional**: Docker, Kubernetes (para Camel K)
 
@@ -136,7 +136,7 @@ curl -fsSL https://camel.apache.org/install.sh | sh
 irm https://camel.apache.org/install.ps1 | iex
 ```
 
-O instalador baixa do Maven Central, verifica checksums SHA-256 e valida que um runtime Java 17+ está disponável. A instalação é por usuário e nunca requer `sudo`. [cite:16]
+O instalador baixa do Maven Central, verifica checksums SHA-256 e valida que um runtime Java 25 está disponível. A instalação é por usuário e nunca requer `sudo`. [cite:16]
 
 #### Método 2: Maven/Gradle
 
