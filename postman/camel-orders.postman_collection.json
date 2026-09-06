@@ -1,0 +1,393 @@
+{
+  "info": {
+    "_postman_id": "c0f8f87e-5e39-4c7a-8a2f-0dc3efc4d001",
+    "name": "Camel Orders API",
+    "description": "Collection completa da API REST da aplicação Camel Orders. Execute a pasta 'Fluxo feliz' em sequência para criar, listar e consultar um pedido; os demais requests cobrem as derivações de validação e observabilidade documentadas no projeto.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080",
+      "type": "string"
+    },
+    {
+      "key": "orderId",
+      "value": "pedido-001",
+      "type": "string"
+    },
+    {
+      "key": "missingOrderId",
+      "value": "pedido-inexistente",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Fluxo feliz",
+      "description": "Cria um pedido, lista os pedidos persistidos em memória e consulta o pedido criado.",
+      "item": [
+        {
+          "name": "Criar pedido válido",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('retorna HTTP 201', function () {",
+                  "    pm.response.to.have.status(201);",
+                  "});",
+                  "const body = pm.response.json();",
+                  "pm.test('pedido fica em PROCESSING', function () {",
+                  "    pm.expect(body.status).to.eql('PROCESSING');",
+                  "});",
+                  "pm.collectionVariables.set('orderId', body.id);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"{{orderId}}\",\n  \"customerId\": \"cliente-123\",\n  \"total\": 125.50,\n  \"country\": \"BR\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/orders",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "orders"
+              ]
+            },
+            "description": "Cria e valida um pedido. O status enviado pelo cliente é ignorado e definido como PROCESSING pela rota."
+          },
+          "response": []
+        },
+        {
+          "name": "Listar pedidos",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('retorna HTTP 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "pm.test('resposta é uma coleção', function () {",
+                  "    pm.expect(pm.response.json()).to.be.an('array');",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/orders",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "orders"
+              ]
+            },
+            "description": "Lista os pedidos armazenados no repositório em memória."
+          },
+          "response": []
+        },
+        {
+          "name": "Consultar pedido por ID",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('retorna HTTP 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "pm.test('retorna o pedido solicitado', function () {",
+                  "    pm.expect(pm.response.json().id).to.eql(pm.collectionVariables.get('orderId'));",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/orders/{{orderId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "orders",
+                "{{orderId}}"
+              ]
+            },
+            "description": "Consulta um pedido pelo identificador."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Criação - derivações válidas",
+      "description": "Variações aceitas pelo modelo Order.",
+      "item": [
+        {
+          "name": "Criar sem país",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"pedido-sem-pais\",\n  \"customerId\": \"cliente-456\",\n  \"total\": 1.00\n}"
+            },
+            "url": "{{baseUrl}}/api/orders",
+            "description": "country é opcional."
+          },
+          "response": []
+        },
+        {
+          "name": "Criar com status informado",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"pedido-status-entrada\",\n  \"customerId\": \"cliente-789\",\n  \"total\": 99.99,\n  \"country\": \"BR\",\n  \"status\": \"RECEIVED\"\n}"
+            },
+            "url": "{{baseUrl}}/api/orders",
+            "description": "Demonstra que a rota normaliza o status para PROCESSING."
+          },
+          "response": []
+        },
+        {
+          "name": "Sobrescrever pedido pelo mesmo ID",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"{{orderId}}\",\n  \"customerId\": \"cliente-atualizado\",\n  \"total\": 200.00,\n  \"country\": \"BR\"\n}"
+            },
+            "url": "{{baseUrl}}/api/orders",
+            "description": "O repositório usa o ID como chave; um POST com o mesmo ID atualiza o registro."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Criação - derivações inválidas (HTTP 400)",
+      "description": "Casos rejeitados pelo OrderValidator. Cada request deve retornar HTTP 400 e uma propriedade error.",
+      "item": [
+        {
+          "name": "Rejeitar sem ID",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"\",\n  \"customerId\": \"cliente-123\",\n  \"total\": 125.50\n}"
+            },
+            "url": "{{baseUrl}}/api/orders"
+          },
+          "response": []
+        },
+        {
+          "name": "Rejeitar sem cliente",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"pedido-sem-cliente\",\n  \"customerId\": \"\",\n  \"total\": 125.50\n}"
+            },
+            "url": "{{baseUrl}}/api/orders"
+          },
+          "response": []
+        },
+        {
+          "name": "Rejeitar total zero",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"pedido-total-zero\",\n  \"customerId\": \"cliente-123\",\n  \"total\": 0\n}"
+            },
+            "url": "{{baseUrl}}/api/orders"
+          },
+          "response": []
+        },
+        {
+          "name": "Rejeitar total negativo",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"pedido-total-negativo\",\n  \"customerId\": \"cliente-123\",\n  \"total\": -1.00\n}"
+            },
+            "url": "{{baseUrl}}/api/orders"
+          },
+          "response": []
+        },
+        {
+          "name": "Rejeitar campos obrigatórios ausentes",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"country\": \"BR\"\n}"
+            },
+            "url": "{{baseUrl}}/api/orders"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Consultas - derivações",
+      "item": [
+        {
+          "name": "Consultar pedido inexistente (HTTP 400)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/orders/{{missingOrderId}}",
+            "description": "A implementação lança IllegalArgumentException para IDs ausentes e o onException Camel converte o caso em HTTP 400."
+          },
+          "response": []
+        },
+        {
+          "name": "Consultar ID vazio (HTTP 400)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/orders/%20",
+            "description": "ID em branco não é encontrado e segue o mesmo tratamento de erro da rota."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Actuator",
+      "description": "Endpoints de operação expostos por management.endpoints.web.exposure.include.",
+      "item": [
+        {
+          "name": "Health",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('retorna HTTP 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "pm.test('status de saúde está presente', function () {",
+                  "    pm.expect(pm.response.json()).to.have.property('status');",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/actuator/health"
+          },
+          "response": []
+        },
+        {
+          "name": "Info",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/actuator/info"
+          },
+          "response": []
+        },
+        {
+          "name": "Listar métricas",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/actuator/metrics"
+          },
+          "response": []
+        },
+        {
+          "name": "Consultar métrica por nome",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/actuator/metrics/{{metricName}}",
+            "description": "Informe uma métrica retornada por 'Listar métricas' na variável metricName, por exemplo http.server.requests."
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

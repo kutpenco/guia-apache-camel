@@ -76,6 +76,13 @@ Kafka e um coletor OpenTelemetry para evoluções da integração.
 | `GET` | `/actuator/health` | Verifica a saúde da aplicação |
 | `GET` | `/actuator/metrics` | Lista métricas do Actuator |
 
+Uma collection completa do Postman, incluindo cenários válidos, falhas de
+validação, consulta de pedido inexistente e endpoints do Actuator, está em
+[`postman/camel-orders.postman_collection.json`](./postman/camel-orders.postman_collection.json).
+Importe também o ambiente
+[`postman/camel-orders.postman_environment.json`](./postman/camel-orders.postman_environment.json)
+para executar contra `http://localhost:8080`.
+
 ### Exemplo de criação
 
 ```bash
