@@ -153,6 +153,13 @@ rotas diretamente, sem subir um servidor HTTP:
 - `deveCriarEPersistirPedido`: valida o fluxo de criação e o status
   `PROCESSING`;
 - `deveRejeitarPedidoInvalido`: valida o tratamento de entrada inválida.
+- `deveConsultarPedidoExistente` e `deveInformarQuandoPedidoNaoExiste`: validam
+  a consulta por identificador;
+- `OrderValidatorTest`, `OrderRepositoryTest` e `OrderTest`: cobrem as regras
+  de validação, persistência em memória e alteração imutável de status.
+
+Os testes seguem o padrão AAA (Arrange, Act, Assert): cada cenário separa a
+preparação dos dados, a execução do comportamento e as verificações esperadas.
 
 Execute a suíte com:
 
