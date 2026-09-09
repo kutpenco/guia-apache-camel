@@ -27,7 +27,7 @@
 
 ### O Que é Apache Camel?
 
-Apache Camel é um framework de integração open-source que implementa mais de 80 Padrões de Integração Enterprise (EIPs) do livro clássico de Gregor Hohpe e Bobby Woolf. [cite:8] Com mais de 300 componentes para conexão com bancos de dados, filas de mensagens, APIs e serviços em nuvem, o Camel fornece um framework unificado para lógica de roteamento, transformação e mediação. [cite:8]
+Apache Camel é um framework de integração open-source que implementa mais de 80 Padrões de Integração Enterprise (EIPs) do livro clássico de Gregor Hohpe e Bobby Woolf. Com mais de 300 componentes para conexão com bancos de dados, filas de mensagens, APIs e serviços em nuvem, o Camel fornece um framework unificado para lógica de roteamento, transformação e mediação.
 
 ### Por Que Usar Camel?
 
@@ -35,7 +35,7 @@ Apache Camel é um framework de integração open-source que implementa mais de 
 - **Conectividade**: 300+ componentes para sistemas diversos
 - **Padrões Comprovados**: Implementação de EIPs testados em produção
 - **Cloud-Native**: Suporte nativo a Kubernetes com Camel K
-- **Segurança por Padrão**: Recursos de segurança integrados sem configuração extra [cite:16]
+- **Segurança por Padrão**: Recursos de segurança integrados sem configuração extra
 
 ### Casos de Uso Tápicos
 
@@ -44,7 +44,7 @@ Apache Camel é um framework de integração open-source que implementa mais de 
 - Orquestração de microsserviços
 - Pipelines de dados em tempo real
 - APIs REST e GraphQL
-- Integração com IA (OpenAI, LangChain4j, Spring AI) [cite:16]
+- Integração com IA (OpenAI, LangChain4j, Spring AI)
 
 ---
 
@@ -52,29 +52,29 @@ Apache Camel é um framework de integração open-source que implementa mais de 
 
 ### Lançamento e Suporte
 
-Apache Camel 4.22 LTS foi lançado em agosto de 2026 e é uma versão de Suporte de Longo Termo (LTS), recebendo correções de bugs e atualizações de segurança por aproximadamente um ano (até agosto de 2027). [cite:16][cite:27] As linhas LTS suportadas atualmente são **4.18.x** e **4.22.x** (4.14.x atingiu o fim da vida útil). [cite:16]
+Apache Camel 4.22 LTS foi lançado em agosto de 2026 e é uma versão de Suporte de Longo Termo (LTS), recebendo correções de bugs e atualizações de segurança por aproximadamente um ano (até agosto de 2027). As linhas LTS suportadas atualmente são **4.18.x** e **4.22.x** (4.14.x atingiu o fim da vida útil).
 
 ### Principais Novidades
 
 #### 1. Camel TUI (Terminal User Interface)
 
-Uma nova aplicação de terminal para monitorar, gerenciar e desenvolver integrações Camel com mais de 30 abas, incluindo: [cite:16]
+Uma nova aplicação de terminal para monitorar, gerenciar e desenvolver integrações Camel com mais de 30 abas, incluindo:
 
 - Editor YAML DSL integrado com autocompletar
 - Assistente de IA incorporado (F8)
-- Abas para rotas, endpoints, consumidores, atividade, erros, histórico, diagramas, saúde, spans OpenTelemetry, profiling JFR, análise de heap, auditoria CVE, catálogo, consultas SQL e muito mais [cite:16]
+- Abas para rotas, endpoints, consumidores, atividade, erros, histórico, diagramas, saúde, spans OpenTelemetry, profiling JFR, análise de heap, auditoria CVE, catálogo, consultas SQL e muito mais
 
 #### 2. Camel AI Unificado
 
-Novo componente `camel-ai-tool` que substitui `camel-langchain4j-tools` (depreciado) e `camel-spring-ai-tools` (removido): [cite:16]
+Novo componente `camel-ai-tool` que substitui `camel-langchain4j-tools` (depreciado) e `camel-spring-ai-tools` (removido):
 
 ```java
 from("ai-tool:weather?tags=weather&description=Obter clima&parameter.cidade=string")
  .setBody(constant("{\"cidade\": \"São Paulo\", \"temp\": \"22C\"}"));
 ```
 
-- Funciona com LangChain4j, Spring AI, OpenAI e qualquer agente compatável com MCP [cite:16]
-- Servidor MCP incorporado para expor ferramentas a agentes de IA [cite:16]
+- Funciona com LangChain4j, Spring AI, OpenAI e qualquer agente compatável com MCP
+- Servidor MCP incorporado para expor ferramentas a agentes de IA
 
 #### 3. Segurança Aprimorada
 
@@ -83,13 +83,13 @@ from("ai-tool:weather?tags=weather&description=Obter clima&parameter.cidade=stri
 - Containment de download para consumidores de armazenamento em nuvem
 - Prevenção de path traversal em arquivos tar/zip
 - Máscara de credenciais em logs e URIs
-- Hardening de autenticação JWT para o servidor HTTP incorporado [cite:16]
+- Hardening de autenticação JWT para o servidor HTTP incorporado
 
 #### 4. Melhorias no Splitter EIP
 
 - **Chunking**: Processar itens em lotes de tamanho fixo com `chunkSize`
 - **Error threshold**: Parar após N falhas consecutivas com `errorThreshold`
-- **Watermark resume**: Retomar do último item processado com sucesso [cite:16]
+- **Watermark resume**: Retomar do último item processado com sucesso
 
 #### 5. Camel CLI Estável
 
@@ -97,20 +97,20 @@ from("ai-tool:weather?tags=weather&description=Obter clima&parameter.cidade=stri
 - `camel self-update` para atualizações automáticas
 - `camel doctor` para diagnósticos
 - `camel run --openapi-ui` para Swagger UI
-- `camel cmd route-diagram` para gerar diagramas de rotas [cite:16]
+- `camel cmd route-diagram` para gerar diagramas de rotas
 
 #### 6. Novos Componentes
 
 - `camel-clickhouse`: Integração com banco de dados ClickHouse
 - `camel-duckdb`: Banco de dados analático DuckDB
-- `camel-jactl`: Linguagem de scripting Jactl para rotas Camel [cite:16]
+- `camel-jactl`: Linguagem de scripting Jactl para rotas Camel
 
 #### 7. Observabilidade
 
 - Estatásticas de latência percentil (p50, p95, p99)
 - Instrumentação JFR em tempo de execução
 - Console de desenvolvimento SQL Trace
-- Histograma de heap para diagnóstico de memória [cite:16]
+- Histograma de heap para diagnóstico de memória
 
 ---
 
@@ -136,7 +136,7 @@ curl -fsSL https://camel.apache.org/install.sh | sh
 irm https://camel.apache.org/install.ps1 | iex
 ```
 
-O instalador baixa do Maven Central, verifica checksums SHA-256 e valida que um runtime Java 17+ está disponável. A instalação é por usuário e nunca requer `sudo`. [cite:16]
+O instalador baixa do Maven Central, verifica checksums SHA-256 e valida que um runtime Java 17+ está disponável. A instalação é por usuário e nunca requer `sudo`.
 
 #### Método 2: Maven/Gradle
 
@@ -256,7 +256,7 @@ camel infra run observability
 
 ### CamelContext
 
-O `CamelContext` é o coração de toda aplicação Camel. É o container de runtime que gerencia o ciclo de vida completo da aplicação. [cite:9]
+O `CamelContext` é o coração de toda aplicação Camel. É o container de runtime que gerencia o ciclo de vida completo da aplicação.
 
 ```java
 import org.apache.camel.CamelContext;
@@ -366,7 +366,7 @@ Camel suporta múltiplas linguagens de expressão:
 .simple("${date:now:yyyy-MM-dd HH:mm:ss}")
 ```
 
-**Nova funcionalidade 4.18+:** Operadores Elvis, Ternário e Chain [cite:17]
+**Nova funcionalidade 4.18+:** Operadores Elvis, Ternário e Chain
 ```java
 .simple("${body.nome ?: 'Anônimo'}")  // Elvis: valor ou fallback
 .simple("${body.valor > 100 ? 'Alto' : 'Baixo'}")  // Ternário
@@ -378,7 +378,7 @@ Camel suporta múltiplas linguagens de expressão:
 .xpath("/pessoa/nome/text()")
 .jsonPath("$.pessoa.nome")
 .groovy("return body.nome.toUpperCase()")
-.jactl("body.nome.toUpperCase()")  // Novo na 4.22 [cite:16]
+.jactl("body.nome.toUpperCase()")  // Novo na 4.22
 ```
 
 ---
@@ -480,7 +480,7 @@ from("rest:get:/api/pedidos")
     .setHeader(Exchange.CONTENT_TYPE, constant("application/json"));
 ```
 
-**Configuração SASL (nova opção `saslAuthType` na 4.18+):** [cite:17]
+**Configuração SASL (nova opção `saslAuthType` na 4.18+):**
 ```yaml
 from:
   uri: "kafka:pedidos"
@@ -533,7 +533,7 @@ from("timer:poll?period=60000")
     .log("Dados recebidos: ${body}");
 ```
 
-**Configuração HTTPS com certificado autoassinado (desenvolvimento):** [cite:18]
+**Configuração HTTPS com certificado autoassinado (desenvolvimento):**
 ```properties
 camel.ssl.enabled=true
 camel.ssl.selfSigned=true
@@ -586,7 +586,7 @@ public class DataSourceConfig {
 
 ### 5. Integração com OpenAI (IA)
 
-**Componente `camel-openai` (atualizado na 4.22):** [cite:16][cite:17]
+**Componente `camel-openai` (atualizado na 4.22):**
 
 ```yaml
 - route:
@@ -612,13 +612,13 @@ camel.component.openai.api-key=${OPENAI_API_KEY}
 camel.component.openai.organization-id=org-xxxxx
 ```
 
-**Novidades 4.22:** [cite:16]
+**Novidades 4.22:**
 - **Responses API**: `openai:responses` com suporte a entrada texto/imagem, output estruturado
 - **áudio**: speech e translation
 - **Execução paralela de ferramentas MCP**
 - **Orçamento de tokens**: `maxToolCallingRoundTrips` (padrão 10)
 
-**Exemplo RAG (Retrieval-Augmented Generation):** [cite:17]
+**Exemplo RAG (Retrieval-Augmented Generation):**
 
 ```java
 from("direct:pergunta-rag")
@@ -676,7 +676,7 @@ camel.component.aws2-s3.secret-key=${AWS_SECRET_KEY}
 camel.component.aws2-s3.region=sa-east-1
 ```
 
-**Novidade 4.18:** Streaming direto de arquivos durante upload [cite:17]
+**Novidade 4.18:** Streaming direto de arquivos durante upload
 
 ### 7. Integração com FTP/SFTP
 
@@ -701,7 +701,7 @@ camel.component.aws2-s3.region=sa-east-1
           uri: "direct:processar-linha"
 ```
 
-**SFTP com MINA (novo componente `camel-mina` na 4.18):** [cite:17]
+**SFTP com MINA (novo componente `camel-mina` na 4.18):**
 ```yaml
 from:
   uri: "mina:ssh://sftp.exemplo.com:22"
@@ -807,7 +807,7 @@ Divide mensagens em partes menores:
     steps:
       - split:
           body:
-          # Novidades 4.22: chunkSize, errorThreshold, watermark [cite:16]
+          # Novidades 4.22: chunkSize, errorThreshold, watermark
           chunkSize: 10
           errorThreshold: 5
         steps:
@@ -876,7 +876,7 @@ Protege contra falhas em cascata:
       uri: "direct:chamar-servico"
     steps:
       - circuitBreaker:
-          # Novidade 4.22: durações em expressões Camel (60s, 1m, PT1M) [cite:16]
+          # Novidade 4.22: durações em expressões Camel (60s, 1m, PT1M)
           resilience4j:
             failureRateThreshold: 50
             waitDurationInOpenState: 60s
@@ -889,7 +889,7 @@ Protege contra falhas em cascata:
               constant: "{\"status\": \"fallback\"}"
 ```
 
-**Novidades 4.22:** [cite:16]
+**Novidades 4.22:**
 - Opções de duração Resilience4j aceitam expressões Camel (`60s`, `1m`, `PT1M`)
 - Processamento assáncrono (não-bloqueante) suportado
 - Fault Tolerance ganhou contadores de chamadas ao vivo
@@ -960,7 +960,7 @@ public class MinhaEstrategia implements AggregationStrategy {
 }
 ```
 
-**Anti-padrão:** Aggregator sem `completionSize` ou `completionTimeout` cresce indefinidamente até OOM. Sempre defina condição de completude. [cite:11]
+**Anti-padrão:** Aggregator sem `completionSize` ou `completionTimeout` cresce indefinidamente até OOM. Sempre defina condição de completude.
 
 ### 7. Enrich
 
@@ -1018,7 +1018,7 @@ camel.endpoint.kafka.brokers=kafka:9092
 camel.kafka.username=${KAFKA_USERNAME}
 camel.kafka.password=${KAFKA_PASSWORD}
 
-# Sensiveis (mascarados em logs automaticamente na 4.22) [cite:16]
+# Sensiveis (mascarados em logs automaticamente na 4.22)
 camel.main.additional-sensitive-keywords=minha-senha,token,secret
 
 # Perfil
@@ -1040,13 +1040,13 @@ from("{{camel.endpoint.inbox}}?include=.*\\.json")
 
 ### Organização de Rotas
 
-**Boas práticas:** [cite:7][cite:8]
+**Boas práticas:**
 
 1. **Mantenha rotas simples**: Decomponha rotas complexas em sub-rotas
 2. **Use endpoints `direct:`** para modularização
 3. **Separe configuração de lógica de roteamento**
 4. **Sempre nomeie rotas e componentes** para rastreabilidade
-5. **Limite de ~50 linhas por rota** [cite:8]
+5. **Limite de ~50 linhas por rota**
 
 **Exemplo de organização:**
 ```java
@@ -1081,7 +1081,7 @@ public class RotasPedidos extends RouteBuilder {
 
 ### Tratamento de Erros
 
-**Melhor prática:** Use blocos `onException` em vez de try-catch em Processors. [cite:8]
+**Melhor prática:** Use blocos `onException` em vez de try-catch em Processors.
 
 ```java
 @Override
@@ -1119,7 +1119,7 @@ public void configure() throws Exception {
 }
 ```
 
-**Anti-padrão:** Definir `handled(true)` sem rotear para DLQ ou log significa que erros desaparecem. Sempre logue ou roteie Exchanges falhados. [cite:11]
+**Anti-padrão:** Definir `handled(true)` sem rotear para DLQ ou log significa que erros desaparecem. Sempre logue ou roteie Exchanges falhados.
 
 ### Idempotência
 
@@ -1146,7 +1146,7 @@ from("kafka:pedidos?brokers={{kafka.brokers}}")
 
 ### Monitoramento
 
-**Habilite JMX e use Camel metrics:** [cite:8]
+**Habilite JMX e use Camel metrics:**
 
 ```properties
 # application.properties
@@ -1165,7 +1165,7 @@ management.endpoints.web.exposure.include=health,info,metrics,camelroutes
 
 ### Testes
 
-**Teste rotas rigorosamente com Camel Test:** [cite:8]
+**Teste rotas rigorosamente com Camel Test:**
 
 ```java
 @ExtendWith(CamelSpringBootExtension.class)
@@ -1193,14 +1193,14 @@ class RotasPedidosTest {
 
 ### Anti-padrões Comuns
 
-**O que NãO fazer:** [cite:11]
+**O que NãO fazer:**
 
 1. **Escrever em `exchange.getOut()`:** Cria nova Message e descarta headers. Sempre mutacione `exchange.getIn()`.
 2. **Agregação ilimitada em memória:** Use repositórios JDBC ou Infinispan.
 3. **Engolir exceções silenciosamente:** Sempre logue ou roteie para DLQ.
 4. **Endpoints não reutilizados:** Cache endpoints ou use ProducerTemplate com templates pré-criados.
 
-**Checklist de revisão de código:** [cite:11]
+**Checklist de revisão de código:**
 - [ ] Condições de completude em todo aggregator
 - [ ] Apenas mutações em `getIn()`
 - [ ] Roteamento para DLQ após error handlers
@@ -1212,9 +1212,9 @@ class RotasPedidosTest {
 
 ### O Que é Camel K?
 
-Apache Camel K leva o poder dos padrões de integração do Camel para Kubernetes com uma abordagem serverless e cloud-native. [cite:6] Em vez de implantar servidores de integração monoláticos, você implanta integrações como workloads independentes. Cada integração é construída em um container que pode escalar independentemente baseado na carga. [cite:6]
+Apache Camel K leva o poder dos padrões de integração do Camel para Kubernetes com uma abordagem serverless e cloud-native. Em vez de implantar servidores de integração monoláticos, você implanta integrações como workloads independentes. Cada integração é construída em um container que pode escalar independentemente baseado na carga.
 
-Camel K suporta múltiplas DSLs incluindo Java, XML, YAML e Groovy. Você pode escrever rotas simples em um único arquivo e implantá-las diretamente no Kubernetes sem construir imagens de container manualmente. O operador Camel K cuida de compilação, containerização e implantação automaticamente. [cite:6]
+Camel K suporta múltiplas DSLs incluindo Java, XML, YAML e Groovy. Você pode escrever rotas simples em um único arquivo e implantá-las diretamente no Kubernetes sem construir imagens de container manualmente. O operador Camel K cuida de compilação, containerização e implantação automaticamente.
 
 ### Instalação do Camel K
 
@@ -1260,7 +1260,7 @@ kubectl wait --for jsonpath='{.status.phase}'=Ready integrationplatform/camel-k 
 kubectl get integrationplatform -A
 ```
 
-**4. Integração com Knative (opcional para serverless):** [cite:6]
+**4. Integração com Knative (opcional para serverless):**
 ```bash
 # Instalar Knative Serving
 kubectl apply -f https://github.com/knative/serving/releases/latest/download/serving-crds.yaml
@@ -1283,7 +1283,7 @@ kubectl get integrationplatform -A -o yaml | grep knative
 
 ### Primeira Integração no Kubernetes
 
-**Arquivo `file-to-api.yaml`:** [cite:6]
+**Arquivo `file-to-api.yaml`:**
 ```yaml
 # file-to-api.yaml
 # Esta é uma Integração Camel K escrita em YAML DSL
@@ -1328,7 +1328,7 @@ kamel logs file-to-api
 
 ### Integração Kafka para Banco de Dados
 
-**Arquivo `kafka-to-database.java`:** [cite:6]
+**Arquivo `kafka-to-database.java`:**
 ```java
 // kafka-to-database.java
 import org.apache.camel.builder.RouteBuilder;
@@ -1374,7 +1374,7 @@ public class KafkaToDatabase extends RouteBuilder {
 }
 ```
 
-**Implantar com credenciais de banco de dados:** [cite:6]
+**Implantar com credenciais de banco de dados:**
 ```bash
 # Criar secret para conexão com banco
 kubectl create secret generic db-credentials \
@@ -1396,7 +1396,7 @@ kamel logs kafka-to-database
 
 ### Content-Based Router no Kubernetes
 
-**Arquivo `content-router.yaml`:** [cite:6]
+**Arquivo `content-router.yaml`:**
 ```yaml
 # content-router.yaml
 - from:
@@ -1429,7 +1429,7 @@ kamel logs kafka-to-database
               - to: "knative:endpoint/processador-padrao"
 ```
 
-**Implantar:** [cite:6]
+**Implantar:**
 ```bash
 kamel run content-router.yaml \
   --profile knative \
@@ -1440,7 +1440,7 @@ kamel run content-router.yaml \
 
 ### Agregação de APIs
 
-**Arquivo `api-aggregator.groovy`:** [cite:6]
+**Arquivo `api-aggregator.groovy`:**
 ```groovy
 // api-aggregator.groovy
 import org.apache.camel.Exchange
@@ -1499,7 +1499,7 @@ from('direct:processar-agregado')
     .log('Dados agregados publicados')
 ```
 
-**Implantar:** [cite:6]
+**Implantar:**
 ```bash
 kamel run api-aggregator.groovy \
   --dependency camel:http \
@@ -1510,7 +1510,7 @@ kamel run api-aggregator.groovy \
 
 ### Tratamento de Erros no Kubernetes
 
-**Arquivo `error-handling.yaml`:** [cite:6]
+**Arquivo `error-handling.yaml`:**
 ```yaml
 # error-handling.yaml
 - onException:
@@ -1555,7 +1555,7 @@ kamel run api-aggregator.groovy \
 
 ### Monitoramento no Kubernetes
 
-**Comandos úteis:** [cite:6]
+**Comandos úteis:**
 ```bash
 # Verificar status das integrações
 kamel get
@@ -1574,7 +1574,7 @@ curl http://localhost:8080/q/metrics
 curl http://localhost:8080/q/health
 ```
 
-**Adicionar métricas customizadas:** [cite:6]
+**Adicionar métricas customizadas:**
 ```java
 // custom-metrics.java
 import org.apache.camel.builder.RouteBuilder;
@@ -1619,7 +1619,7 @@ public class CustomMetrics extends RouteBuilder {
 }
 ```
 
-### Boas Práticas Camel K [cite:6]
+### Boas Práticas Camel K
 
 1. **Mantenha integrações focadas**: Cada integração deve lidar com um fluxo especáfico. Evite criar integrações monoláticas que fazem tudo.
 
@@ -1639,7 +1639,7 @@ public class CustomMetrics extends RouteBuilder {
 
 ## Monitoramento e Observabilidade
 
-### Novidades 4.22 em Observabilidade [cite:16]
+### Novidades 4.22 em Observabilidade
 
 - **Estatásticas de latência percentil**: p50, p95, p99 disponáveis via JMX, dev console, TUI e CLI
 - **Instrumentação JFR em runtime**: `camel-jfr` emite eventos JFR durante roteamento de mensagens
@@ -1675,11 +1675,11 @@ management.endpoint.health.show-details=always
 </dependency>
 ```
 
-**Nota:** `camel-opentelemetry` está depreciado. Migre para `camel-opentelemetry2` para estar pronto para o futuro. [cite:17]
+**Nota:** `camel-opentelemetry` está depreciado. Migre para `camel-opentelemetry2` para estar pronto para o futuro.
 
 ### Dashboard Camel (Camel K)
 
-Para monitoramento em tempo real no Kubernetes, use o **Camel Dashboard** com o componente `camel-observability-services`: [cite:5]
+Para monitoramento em tempo real no Kubernetes, use o **Camel Dashboard** com o componente `camel-observability-services`:
 
 ```yaml
 # deployment.yaml
@@ -1712,7 +1712,7 @@ curl http://localhost:8080/q/health
 
 ### Infraestrutura de Observabilidade Local
 
-**Camel CLI 4.22:** [cite:16]
+**Camel CLI 4.22:**
 ```bash
 # Iniciar stack de observabilidade (Prometheus, VictoriaTraces, VictoriaLogs, Perses)
 camel infra run observability
@@ -1721,7 +1721,7 @@ camel infra run observability
 camel run --observe minhas-rotas.yaml
 ```
 
-Zero configuração necessária â€" Camel automaticamente coleta métricas e exporta traces e logs para a stack em execução. [cite:16]
+Zero configuração necessária â€" Camel automaticamente coleta métricas e exporta traces e logs para a stack em execução.
 
 ### Métricas Customizadas
 
@@ -1769,7 +1769,7 @@ public class RotasComMetrics extends RouteBuilder {
 
 ### Camel TUI para Monitoramento
 
-O novo **Camel TUI** (Terminal User Interface) na 4.22 oferece mais de 30 abas para observação: [cite:16]
+O novo **Camel TUI** (Terminal User Interface) na 4.22 oferece mais de 30 abas para observação:
 
 ```bash
 # Executar aplicação
@@ -1791,7 +1791,7 @@ camel run minhas-rotas.yaml
 
 ## Segurança em Produção
 
-### Segurança por Padrão na 4.22 [cite:16]
+### Segurança por Padrão na 4.22
 
 Camel 4.22 continua o esforça de segurança por padrão:
 
@@ -1803,11 +1803,11 @@ Camel 4.22 continua o esforça de segurança por padrão:
 - **Máscara de credenciais mais forte**: Em logs e URIs
 - **Hardening de autenticação JWT**: Para servidor HTTP incorporado
 
-O objetivo é que Camel seja seguro para rodar em produção sem precisar lembrar uma lista de verificação de opções de segurança para habilitar. [cite:16]
+O objetivo é que Camel seja seguro para rodar em produção sem precisar lembrar uma lista de verificação de opções de segurança para habilitar.
 
 ### Configurações de Segurança
 
-**Palavras-chave sensiveis (mascaramento automático em logs):** [cite:16]
+**Palavras-chave sensiveis (mascaramento automático em logs):**
 ```properties
 camel.main.additional-sensitive-keywords=minha-senha,token,api-key,secret,credential
 ```
@@ -1830,14 +1830,14 @@ from:
 
 ### CVE e Vulnerabilidades
 
-**CVEs recentes resolvidos na 4.22:** [cite:25][cite:26]
+**CVEs recentes resolvidos na 4.22:**
 
 - **CVE-2026-46587**: Validação inadequada de entrada (resolvido em 4.18.3, 4.21.0, 4.22.0)
 - **CVE-2026-40453**: Vulnerabilidade RCE (resolvido em 4.20.0+)
 
 **Verificar CVEs nas dependências:**
 ```bash
-# Camel MCP Server (4.22) [cite:16]
+# Camel MCP Server (4.22)
 camel plugin get camel_dependency_security_audit
 
 # Ou usar ferramentas como OWASP Dependency-Check
@@ -1868,12 +1868,12 @@ camelContext.setDynamicURIAllowList("http://api.exemplo.com/*,https://seguro.com
 
 ### Documentação Oficial
 
-- [Apache Camel 4.22 What's New](https://camel.apache.org/blog/2026/08/camel422-whatsnew/) [cite:16]
+- [Apache Camel 4.22 What's New](https://camel.apache.org/blog/2026/08/camel422-whatsnew/)
 - [Apache Camel Manual](https://camel.apache.org/manual/)
 - [Camel K Documentation](https://camel.apache.org/camel-k/next/)
-- [Upgrade Guide 4.x](https://camel.apache.org/manual/camel-4x-upgrade-guide-4_21.html) [cite:21]
+- [Upgrade Guide 4.x](https://camel.apache.org/manual/camel-4x-upgrade-guide-4_21.html)
 
-### Componentes Novos na 4.22 [cite:16]
+### Componentes Novos na 4.22
 
 - `camel-ai-tool`: Componente unificado de ferramenta IA
 - `camel-clickhouse`: Banco de dados ClickHouse
@@ -1884,13 +1884,13 @@ camelContext.setDynamicURIAllowList("http://api.exemplo.com/*,https://seguro.com
 
 - **Camel CLI**: `curl -fsSL https://camel.apache.org/install.sh | sh`
 - **Camel TUI**: Terminal UI com 30+ abas
-- **Camel Upgrade Recipes**: Automatiza upgrade entre versões [cite:16]
-- **Kaoto**: Designer visual de integrações no VS Code [cite:17]
+- **Camel Upgrade Recipes**: Automatiza upgrade entre versões
+- **Kaoto**: Designer visual de integrações no VS Code
 
 ### Comunidade
 
 - [Apache Camel Blog](https://camel.apache.org/blog/)
-- [Camel Integration Quarterly Digests](https://developers.redhat.com/blog/2026/07/23/camel-integration-quarterly-digest-q2-2026/) [cite:2][cite:3][cite:4]
+- [Camel Integration Quarterly Digests](https://developers.redhat.com/blog/2026/07/23/camel-integration-quarterly-digest-q2-2026/)
 - [GitHub apache/camel](https://github.com/apache/camel)
 
 ### Livros e Cursos
@@ -2109,4 +2109,4 @@ spec:
 
 ---
 
-*Este documento foi criado em Setembro de 2026 e cobre Apache Camel 4.22 LTS. Para atualizações, consulte a documentação oficial e o blog do Apache Camel.* [cite:16][cite:27]
+*Este documento foi criado em Setembro de 2026 e cobre Apache Camel 4.22 LTS. Para atualizações, consulte a documentação oficial e o blog do Apache Camel.*
